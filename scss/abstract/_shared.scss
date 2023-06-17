@@ -72,8 +72,9 @@ button {
 @mixin container-styles {
   animation: fadeIn;
   animation-duration: 1s;
+  @include getBg($clr-neutral,100);
+  @include container(min(90%,650px));
   padding: 1.5rem 1.6rem;
   border-radius: 8px;
-  @include container(min(90%,650px));
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
