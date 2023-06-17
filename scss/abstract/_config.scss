@@ -1,0 +1,169 @@
+$fontStacked: "PlusJakartaSans", Arial, sans-serif;
+$regular: 400;
+$medium: 500;
+$bold: 700;
+
+@mixin fontRegular {
+  font-family: $fontStacked;
+  src: url(../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf);
+  font-weight: $regular;
+}
+
+@mixin fontMedium {
+  font-family: $fontStacked;
+  src: url(../assets/fonts/static/PlusJakartaSans-Medium.ttf);
+  font-weight: $medium;
+}
+
+@mixin fontBold {
+  font-family: $fontStacked;
+  src: url(../assets/fonts/static/PlusJakartaSans-ExtraBold.ttf);
+  font-weight: $bold;
+}
+
+@font-face {
+  @include fontRegular;
+}
+
+@font-face {
+  @include fontMedium;
+}
+
+@font-face {
+  @include fontBold;
+}
+
+
+
+
+/* Step -5: 11.25px → 11.80px */
+$secondary-text: clamp(0.70rem, calc(0.53rem + 0.55vw), 0.74rem);
+
+/* Step -4: 13.50px → 14.75px */
+$primary-text: clamp(0.84rem, calc(0.45rem + 1.25vw), 0.92rem);
+
+/* Step -3: 16.20px → 18.43px */
+$sub-title: clamp(1.01rem, calc(0.32rem + 2.23vw), 1.15rem);
+
+/* Step -2: 19.44px → 23.04px */
+$title: clamp(1.22rem, calc(0.09rem + 3.60vw), 1.44rem);
+
+/* Step -1: 23.33px → 28.80px */
+$sub-heading: clamp(1.46rem, calc(-0.25rem + 5.47vw), 1.80rem);
+
+/* Step 0: 28.00px → 36.00px */
+$heading: clamp(1.75rem, calc(-0.75rem + 8.00vw), 2.25rem);
+
+
+
+//====colors====//
+$clr-primary: (
+  100: hsl(1, 90%, 64%),
+  200: hsl(219, 85%, 26%)
+);
+
+$clr-neutral: (
+  100: hsl(0, 0%, 100%),
+  200: hsl(210, 60%, 98%),
+  300: hsl(211, 68%, 94%),
+  400: hsl(205, 33%, 90%),
+  500: hsl(219, 14%, 63%),
+  600: hsl(219, 12%, 42%),
+  700: hsl(224, 21%, 14%)
+);
+
+@mixin isHover {
+  cursor: pointer;
+  transition: .6s;
+}
+
+@mixin getColor($clr-type, $key) {
+  color: map-get($clr-type, $key);
+}
+
+@mixin getBg($clr-type, $key) {
+  background-color: map-get($clr-type, $key);
+}
+
+@mixin container($min-width) {
+  width: $min-width;
+  margin-inline: auto;
+}
+
+@mixin flexbox($fd,$align,$gap,$justify: initial) {
+  display: flex;
+  flex-direction: $fd;
+  align-items: $align;
+  gap: $gap;
+  justify-content: $justify;
+}
+
+@mixin fadeOut() {
+  animation: fadeOut;
+  animation-duration: 1s;
+}
+
+//=====styles=====//
+body {
+  font-family: $fontStacked;
+  font-weight: $medium;
+  font-size: 14px;
+
+  h3 {
+    font-size: $title;
+  }
+
+  h3,.name {
+    font-weight: $bold;
+    @include getColor($clr-neutral, 700);
+  }
+  
+  .trigger-btn {
+    @include isHover();
+  }
+  
+  .name {
+    font-size: 15px;
+    @include isHover();
+  }
+  
+  .about {
+    font-weight: $bold;
+    @include getColor($clr-primary, 200);
+    @include isHover();
+  }
+  
+  .content {
+    @include isHover();
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .about:hover {
+      $clr: map-get($clr-primary, 200);
+      color: lighten($clr, 16%);
+    }
+    .name:hover {
+      @include getColor($clr-primary, 200);
+    }
+    .content:hover {
+      $clr: map-get($clr-neutral, 400);
+      background-color: darken($clr, 10%);
+    }
+  }
+  
+  ul {
+    @include getColor($clr-neutral, 600)
+  }
+}
+
+
+//===ICONS=====//
+
+@mixin icon($content,$fs,$fn: --fa-font-solid) {
+  display: inline-block;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content: $content;
+  font-size: $fs;
+  font: $fn;
+}

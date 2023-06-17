@@ -1,0 +1,40 @@
+@use 'config' as *;
+@use 'shared' as *;
+main {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  @include getBg($clr-neutral,200);
+}
+
+.container {
+  @include container(min(100%,660px));
+  padding: 1.5rem;
+  .count {
+    @extend %count;
+  }
+}
+
+@media (min-width: 40rem) {
+  main {
+    padding: 2rem 0;
+  }
+  .container {
+    @include container-styles;
+  }
+}
+
+header {
+  @include flexbox(row,center,0,space-between);
+  margin-bottom: 1rem;
+  > * {
+    @include flexbox(row,center,0 .5rem);
+  }
+}
+
+ul {
+  @extend %notification;
+  &.unread {
+    @extend %unread;
+  }
+}
