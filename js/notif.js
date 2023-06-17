@@ -5,7 +5,7 @@ const unreadLi = Array.from(unreadContainer.children);
 const seenLi = Array.from(seenContainer.children);
 
 
-fetch('js/data.json')
+fetch('./js/data.json')
 .then(response => response.json())
 .then(data => {
   let unreadHTML = '';
